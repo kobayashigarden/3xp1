@@ -1,3 +1,6 @@
+Please use this URL when linking to this file.
+https://figshare.com/account/home#/collections/6472138
+
 # 3x + 1 problem
 
 This is a complete formal proof of the Collatz conjecture, a well-known unsolved problem in mathematics.
