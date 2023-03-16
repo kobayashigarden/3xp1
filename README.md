@@ -9,7 +9,8 @@ This is a complete formal proof of the Collatz conjecture, a well-known unsolved
   This project began in May 2022 and was completed in March 2023.
 
   We have not been able to obtain the cooperation of any academic institution and therefore lack the funds.  
-  We need R&D funds to help us.
+  We need R&D funds.
+  Please help us.
 
 Works with Coq 8.16. https://github.com/coq/coq
 
