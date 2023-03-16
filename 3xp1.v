@@ -9,7 +9,7 @@ This proof file runs on Coq 8.16.
   This project began in May 2022 and was completed in March 2023.
 
   We have not been able to obtain the cooperation of any academic institution and therefore lack the funds.
-  We need R&D funds to help us.
+  We need R&D funds. Please help us.
 
   Copyright Teruyuki and Yoko Kobayashi.
     https://orcid.org/0000-0002-5662-6948
