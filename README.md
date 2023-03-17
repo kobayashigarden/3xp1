@@ -1,7 +1,7 @@
 Please use this URL when linking to this file.
 https://doi.org/10.6084/m9.figshare.c.6472138
 
-# 3x + 1 problem
+# The 3x+1 problem was completely proven by Kobayashi Garden Theorem.
 
 This is a complete formal proof of the Collatz conjecture, a well-known unsolved problem in mathematics.
 
