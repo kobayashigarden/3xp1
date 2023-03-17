@@ -79,7 +79,7 @@ End Utility_Lemma.
 Section KobayashiGardenTheorem_3xp1.
 
 (* Relation of natural numbers *)
-Definition Rdef (x y : nat) : Prop := 0 < x →
+Definition Rdef (x y : nat) : Prop := 0 < x → 0 < y → 
   (Nat.Odd x → y = 3 * x + 1) /\
   (Nat.Even x → y = x / 2).
 
