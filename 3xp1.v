@@ -79,9 +79,8 @@ End Utility_Lemma.
 Section KobayashiGardenTheorem_3xp1.
 
 (* Relation of natural numbers *)
-Definition Rdef (x y : nat) : Prop := 0 < x → 0 < y → 
-  (Nat.Odd x → y = 3 * x + 1) /\
-  (Nat.Even x → y = x / 2).
+Definition Rdef (x y : nat) : Prop :=
+(Nat.Odd x ∧ y = 3 * x + 1) ∨ (Nat.Even x ∧ y = x / 2).
 
 Axiom R_Definition : ∀ x y, Rdef x y.
 
@@ -163,21 +162,23 @@ Proof.
 Qed.
 
 (* Lemma to the relation *)
-Lemma R_implies_f : ∀ x y, 0 < x → 
-  ((Nat.Odd x → y = 3 * x + 1) /\ (Nat.Even x → y = x / 2)) →
-  ((x <= 2 * 3 → reaches_1 x) → R x y → f x = y).
-Proof.
-  intros x y Hgt0 H. unfold f, R in *.
-  - intros.
-    destruct H as [Hodd Heven]; auto.
-    case_eq (Nat.odd x).
-    * rewrite Nat.odd_spec.
-      symmetry; auto.
-    * intros.
-      assert (Nat.odd x = false → Nat.Even x) as Hodd_even 
-      by (apply odd_false_even); apply Hodd_even in H;
-      clear Hodd_even.
-      apply Heven in H; auto.
+Lemma R_implies_f : ∀ x y, 0 < x →
+  ((Nat.Odd x /\ y = 3 * x + 1) \/ (Nat.Even x /\ y = x / 2)) → 
+  (x <= 2 * 3 → reaches_1 x) →  
+  R x y → f x = y.
+  intros x y Hxgt0 H Hmin HRx. unfold f, R in *.
+  case_eq (Nat.odd x).
+  * intros Hodd. rewrite Nat.odd_spec in Hodd.
+    destruct H as [[Hodd' H3xp1] | Heven'];auto.
+    destruct Heven'.
+    apply Nat.Even_Odd_False in H; auto.
+    exfalso; auto.
+  * intros Heven. 
+    apply odd_false_even in Heven.
+    destruct H as [[Hodd' H3xp1] | Heven'];auto.
+    apply Nat.Even_Odd_False in Heven; auto.
+    exfalso; auto.
+    destruct Heven'; auto.
 Qed.
 
 (* Lemma to the function *)
