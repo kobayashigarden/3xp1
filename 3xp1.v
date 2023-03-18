@@ -80,7 +80,7 @@ Section KobayashiGardenTheorem_3xp1.
 
 (* Relation of natural numbers *)
 Definition Rdef (x y : nat) : Prop :=
-(Nat.Odd x ∧ y = 3 * x + 1) ∨ (Nat.Even x ∧ y = x / 2).
+(Nat.Odd x ∧ 4 = y mod (2 * 3) ∧ y = 3 * x + 1) ∨ (Nat.Even x ∧ y = x / 2).
 
 Axiom R_Definition : ∀ x y, Rdef x y.
 
@@ -163,13 +163,14 @@ Qed.
 
 (* Lemma to the relation *)
 Lemma R_implies_f : ∀ x y, 0 < x →
-  ((Nat.Odd x /\ y = 3 * x + 1) \/ (Nat.Even x /\ y = x / 2)) → 
+  ((Nat.Odd x /\ 4 = y mod (2 * 3) /\ y = 3 * x + 1) \/ (Nat.Even x /\ y = x / 2)) → 
   (x <= 2 * 3 → reaches_1 x) →  
   R x y → f x = y.
   intros x y Hxgt0 H Hmin HRx. unfold f, R in *.
   case_eq (Nat.odd x).
   * intros Hodd. rewrite Nat.odd_spec in Hodd.
     destruct H as [[Hodd' H3xp1] | Heven'];auto.
+    destruct H3xp1; auto.
     destruct Heven'.
     apply Nat.Even_Odd_False in H; auto.
     exfalso; auto.
